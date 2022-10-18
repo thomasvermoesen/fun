@@ -85,7 +85,7 @@ results = monte_carlo_runs(start_mana = (13,14),final_mana = 7,n_monte_carlo = 1
 for i in results:
     print(i)
 
-# # print(combo(22,100000,10**9))
+# print(combo(22,100000,10**9))
 
 # t2 = time.perf_counter()
 
