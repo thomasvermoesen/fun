@@ -14,17 +14,19 @@ def treasures():
     return max((d12(),d12()))
 
 
-
 @njit()
 def combo(start_mana = 13,final_mana = 100,imax = 10000):
     """
     returns a,b
 
     a := 0 => fizzled
-         b = times cast before fizzle
+         b => times cast before fizzle
     
     a := 1 => succes
          b => times cast before end
+    
+    c:= final mana
+
     """
     if start_mana < 13:
         # print("start_mana needs to be at least 13")
@@ -42,7 +44,7 @@ def combo(start_mana = 13,final_mana = 100,imax = 10000):
                 print("imax overschreden")
             return 0,i
 
-    return 1,i
+    return 1,i,mana + treasures() + treasures()
 
 @njit(parallel=True)
 def monte_carlo(n,start_mana = 13,final_mana = 100):
@@ -79,22 +81,4 @@ def monte_carlo_runs(start_mana = (13,17),final_mana = 100,n_monte_carlo = 4000)
         fizzle_turn.append(test[1])
 
     return P,W_turn,fizzle_turn
-
-results = monte_carlo_runs(start_mana = (13,14),final_mana = 7,n_monte_carlo = 10**6)
-
-for i in results:
-    print(i)
-
-# print(combo(22,100000,10**9))
-
-# t2 = time.perf_counter()
-
-# print(t2-t1)
-
-# [0.767 0.837 0.894 0.937 0.967 0.983 0.99 ]
-# [41.099 41.677 42.311 43.004 43.767 44.612 45.518]
-# [1.474 1.606 1.804 2.128 2.674 3.29  3.587]
-
-# n = 40 000 * 10 000
-# time = 589 s 
 
