@@ -13,12 +13,7 @@ def d12():
 def treasures():
     return max((d12(),d12()))
 
-som = 0
 
-for _ in range(47):
-    som+=treasures()
-
-print(som)
 
 @njit()
 def combo(start_mana = 13,final_mana = 100,imax = 10000):
